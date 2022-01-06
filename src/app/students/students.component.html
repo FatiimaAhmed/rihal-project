@@ -1,5 +1,30 @@
+<ngb-toast *ngIf="show" [delay]="5000" [autohide]="false" class="toast bg-success">
+    {{message}}
+</ngb-toast>
 <div class="col-12">
     <div class="">
         <button class="btn btn-success" (click)="onAddStudent()">Add New Student</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>name</td>
+                    <td>class</td>
+                    <td>date of birth</td>
+                    <td>country</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students">
+                    <!-- <td>{{ i + 1}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.class}}</td>
+                    <td>date of birth</td>
+                    <td>country</td> -->
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

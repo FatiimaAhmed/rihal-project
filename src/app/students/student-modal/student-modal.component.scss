@@ -1,3 +1,13 @@
 :host {
-    text-transform: capitalize;
+  text-transform: capitalize;
+
+  div > p {
+    font-size: 13px;
+    text-transform: lowercase;
+  }
+
+  input.ng-invalid.ng-dirty {
+    border-color: #dc35458a;
+    box-shadow: 0 0 0 0.2rem rgb(244 67 54 / 26%);
+  }
 }

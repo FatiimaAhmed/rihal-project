@@ -20,8 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule, 
+    NgbModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

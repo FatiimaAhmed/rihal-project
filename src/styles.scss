@@ -1,9 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap");
 
 body {
-    font-family: 'Urbanist', serif, sans-serif;
+  font-family: "Urbanist", serif, sans-serif;
 }
 
+p {
+  margin-bottom: 0;
+}
+
+.toast {
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  right: 10px;
+}
