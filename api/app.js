@@ -26,19 +26,24 @@ app.get("/", (req, res) => {
   res.send("hey there 😉");
 });
 
+//get students list
 app.get("/getStudents", (req, res) => {
-  let sql = `SELECT * FROM students`;
+  let sql = `SELECT student_id, name, date_of_birth, class_name, country_name 
+  FROM students 
+  INNER JOIN classes 
+  INNER JOIN countries 
+  ON (classes.id = students.class_id) and (countries.id = students.country_id)`;
   db.all(sql, (err, row) => {
     if (err) {
       throw err;
-      //   console.log(err);
+      // console.log(err);
     }
 
     res.json(row);
-    // closeDB();
   });
 });
 
+//get class list
 app.get("/getClasses", (req, res) => {
   let sql = `SELECT * FROM classes`;
   db.all(sql, (err, row) => {
@@ -52,19 +57,19 @@ app.get("/getClasses", (req, res) => {
   });
 });
 
+//get country list
 app.get("/getCountries", (req, res) => {
   let sql = `SELECT * FROM countries`;
   db.all(sql, (err, row) => {
     if (err) {
       throw err;
-      //console.log(err);
     }
 
     res.json(row);
-    // closeDB();
   });
 });
 
+//add new student
 app.post("/addStudent", (req, res) => {
   console.log(req.body);
   let params = [
@@ -82,6 +87,53 @@ app.post("/addStudent", (req, res) => {
     }
 
     res.json("student added successfully");
+  });
+});
+
+//add new class
+app.post("/addClass", (req, res) => {
+  let params = [req.body.className];
+  let sql = "INSERT INTO classes class_name VALUES (?)";
+  db.run(sql, params, (err) => {
+    if (err) {
+      res.json(err);
+      throw err;
+    }
+
+    res.json("class added successfully");
+  });
+});
+
+//add new country
+app.post("/addCountry", (req, res) => {
+  let params = [req.body.countryName];
+  let sql = "INSERT INTO countries country_name VALUES (?)";
+  db.run(sql, params, (err) => {
+    if (err) {
+      res.json(err);
+      throw err;
+    }
+
+    res.json("country added successfully");
+  });
+});
+
+//edit student
+app.post("/editStudent/:id", (req, res) => {
+  console.log(req.body);
+});
+
+//delete student
+app.post("/deleteStudent/:id", (req, res) => {
+  let id = req.params.id;
+  let sql = "DELETE FROM students WHERE student_id = ?";
+  db.run(sql, id, (err) => {
+    if (err) {
+      res.json(err);
+      throw err;
+    }
+
+    res.json(`student with id ${id} is deleted`);
   });
 });
 

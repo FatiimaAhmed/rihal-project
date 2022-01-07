@@ -24,6 +24,10 @@ export class StudentsService {
     )
   };
 
+  deleteStudent(id: number) {
+    return this.http.post(`${this.uri}/deleteStudent/${id}`, {});
+  }
+
   getClasses() {
     return this.http.get(this.uri + '/getClasses').pipe(
       map(res => {

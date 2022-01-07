@@ -17,3 +17,7 @@ p {
   top: 10px;
   right: 10px;
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
