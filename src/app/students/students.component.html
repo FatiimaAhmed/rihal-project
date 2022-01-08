@@ -1,5 +1,52 @@
-<div class="col-12">
-    <div class="">
-        <button class="btn btn-success" (click)="onAddStudent()">Add New Student</button>
+<ngb-toast *ngIf="show" [delay]="5000" [autohide]="false" class="toast bg-success">
+    {{message}}
+</ngb-toast>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="mb-3 d-flex align-items-center justify-content-between">
+            <div class="search">
+                <input class="form-control" type="search" aria-label="search students">
+            </div>
+            <!-- <button class="btn btn-success" (click)="onAddStudent()">Add New Student</button> -->
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn" id="dropdown" ngbDropdownToggle>
+                    <fa-icon [icon]="add"></fa-icon> Add New
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdown">
+                    <button ngbDropdownItem (click)="onAddStudent()">Student</button>
+                    <button ngbDropdownItem>Class</button>
+                    <button ngbDropdownItem>country</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>name</td>
+                        <td>class</td>
+                        <td>date of birth</td>
+                        <td>country</td>
+                        <td>options</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.class_name }}</td>
+                        <td>{{ student.date_of_birth }}</td>
+                        <td>{{ student.country_name }}</td>
+                        <td>
+                            <fa-icon class="text-secondary" [icon]="edit" (click)="onEditStudent(student)"></fa-icon> |
+                            <fa-icon class="text-danger" [icon]="delete" (click)="onDeleteStudent(student.student_id)">
+                            </fa-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>
