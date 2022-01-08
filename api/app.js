@@ -92,8 +92,8 @@ app.post("/addStudent", (req, res) => {
 
 //add new class
 app.post("/addClass", (req, res) => {
-  let params = [req.body.className];
-  let sql = "INSERT INTO classes class_name VALUES (?)";
+  let params = req.body.name;
+  let sql = "INSERT INTO classes (class_name) VALUES (?)";
   db.run(sql, params, (err) => {
     if (err) {
       res.json(err);
@@ -106,8 +106,8 @@ app.post("/addClass", (req, res) => {
 
 //add new country
 app.post("/addCountry", (req, res) => {
-  let params = [req.body.countryName];
-  let sql = "INSERT INTO countries country_name VALUES (?)";
+  let params = req.body.name;
+  let sql = "INSERT INTO countries (country_name) VALUES (?)";
   db.run(sql, params, (err) => {
     if (err) {
       res.json(err);
@@ -121,6 +121,22 @@ app.post("/addCountry", (req, res) => {
 //edit student
 app.post("/editStudent/:id", (req, res) => {
   console.log(req.body);
+  let id = req.params.id;
+  let params = [
+    Number(req.body.class),
+    Number(req.body.country),
+    req.body.name,
+    req.body.birthday,
+  ];
+  let sql = `UPDATE students SET (class_id, country_id, name, date_of_birth) = (?, ?, ?, ?) WHERE student_id = ${id}`;
+  db.run(sql, params, (err) => {
+    if (err) {
+      res.json(err);
+      throw err;
+    }
+
+    res.json(`student with id ${id} updated successfully`);
+  });
 });
 
 //delete student

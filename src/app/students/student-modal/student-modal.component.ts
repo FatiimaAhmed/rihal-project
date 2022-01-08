@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
-import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { classData, country } from 'src/app/models.model';
 import { StudentsService } from 'src/app/students.service';
 
 @Component({
@@ -11,7 +12,9 @@ import { StudentsService } from 'src/app/students.service';
 })
 export class StudentModalComponent implements OnInit {
   @Input() student: any;
-
+  @Input() classes: classData[] = [];
+  @Input() countries: country[] = [];
+  
   studentForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     birthday: new FormControl(''),
@@ -19,25 +22,20 @@ export class StudentModalComponent implements OnInit {
     country: new FormControl(0),
   });
 
-  classes: any[] = [];
-  countries: any[] = [];
-  date!: NgbDateStruct;
-  isDisabled: boolean = true;
+  isEdit: boolean = false;
 
   get name() { return this.studentForm.get('name'); }
 
   constructor(private activeModal: NgbActiveModal, private studentService: StudentsService) { }
 
   ngOnInit(): void {
-    this.onGetClasses();
-    this.onGetCountries();
     if (this.student) {
-      console.log(this.student)
+      this.isEdit = true;
       this.studentForm.patchValue({
         name: this.student.name,
         birthday: this.student.date_of_birth,
-        class: this.student.class_name,
-        country: this.student.country_name,
+        class: this.student.class_id,
+        country: this.student.country_id,
       })
     } else {
       console.log('new student')
@@ -45,29 +43,23 @@ export class StudentModalComponent implements OnInit {
   }
 
   onSubmit() {
-    let birthday = `${this.date.year}-${this.date.month}-${this.date.day}`;
-    this.studentForm.patchValue({
-      birthday: birthday
-    });
-    //console.log(this.studentForm.value);
+    // console.log(this.studentForm.value);
     if (this.studentForm.valid) {
-      this.isDisabled = false;
       this.studentService.addStudent(this.studentForm.value).subscribe(res => {
         this.activeModal.close(res);
       })
     }
   };
 
+  onEdit() {
+    console.log(this.studentForm.value)
+    this.studentService.editStudent(this.student.student_id, this.studentForm.value).subscribe(res => {
+      this.activeModal.close(res);
+    })
+  }
+
   onCancel() {
     this.activeModal.dismiss();
-  }
-
-  onGetClasses() {
-    this.studentService.getClasses().subscribe((res: any) => this.classes = res)
-  }
-
-  onGetCountries() {
-    this.studentService.getCountries().subscribe((res: any) => this.countries = res)
   }
 
 }

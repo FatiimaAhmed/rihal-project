@@ -14,8 +14,8 @@
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdown">
                     <button ngbDropdownItem (click)="onAddStudent()">Student</button>
-                    <button ngbDropdownItem>Class</button>
-                    <button ngbDropdownItem>country</button>
+                    <button ngbDropdownItem (click)="onAdd('Class')">Class</button>
+                    <button ngbDropdownItem (click)="onAdd('Country')">country</button>
                 </div>
             </div>
         </div>

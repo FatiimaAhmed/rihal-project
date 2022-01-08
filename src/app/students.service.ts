@@ -12,10 +12,7 @@ export class StudentsService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(student: {}) {
-    return this.http.post(this.uri + '/addStudent', student)
-  }
-
+  //students
   getStudents() {
     return this.http.get(this.uri + '/getStudents').pipe(
       map(res => {
@@ -24,10 +21,19 @@ export class StudentsService {
     )
   };
 
+  addStudent(student: {}) {
+    return this.http.post(this.uri + '/addStudent', student);
+  };
+
+  editStudent(id: number, student: any) {
+    return this.http.post(`${this.uri}/editStudent/${id}`, student);
+  };
+
   deleteStudent(id: number) {
     return this.http.post(`${this.uri}/deleteStudent/${id}`, {});
-  }
+  };
 
+  //classes
   getClasses() {
     return this.http.get(this.uri + '/getClasses').pipe(
       map(res => {
@@ -36,11 +42,20 @@ export class StudentsService {
     )
   };
 
+  addClass(name: any) {
+    return this.http.post(this.uri + '/addClass', {name : name});
+  };
+
+  //countries
   getCountries() {
     return this.http.get(this.uri + '/getCountries').pipe(
       map(res => {
         return res
       })
     )
+  };
+
+  addCountry(name: any) {
+    return this.http.post(this.uri + '/addCountry', {name: name});
   };
 }
