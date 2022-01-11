@@ -22,11 +22,11 @@ export class AddModalComponent implements OnInit {
   }
 
   onAddClass() {
-    this.studentsService.addClass(this.name.value).subscribe(res => this.activeModal.close(res));
+    this.studentsService.addClass(this.name.value).subscribe(res => this.activeModal.close(res), err => this.activeModal.close(err));
   }
 
   onAddCountry() {
-    this.studentsService.addCountry(this.name.value).subscribe(res => this.activeModal.close(res));
+    this.studentsService.addCountry(this.name.value).subscribe(res => this.activeModal.close(res), err => this.activeModal.close(err));
   }
 
   onCancel() {

@@ -37,25 +37,19 @@ export class StudentModalComponent implements OnInit {
         class: this.student.class_id,
         country: this.student.country_id,
       })
-    } else {
-      console.log('new student')
     }
   }
 
   onSubmit() {
     // console.log(this.studentForm.value);
     if (this.studentForm.valid) {
-      this.studentService.addStudent(this.studentForm.value).subscribe(res => {
-        this.activeModal.close(res);
-      })
+      this.studentService.addStudent(this.studentForm.value).subscribe(res => this.activeModal.close(res), err => this.activeModal.close(err))
     }
   };
 
   onEdit() {
-    console.log(this.studentForm.value)
-    this.studentService.editStudent(this.student.student_id, this.studentForm.value).subscribe(res => {
-      this.activeModal.close(res);
-    })
+    // console.log(this.studentForm.value)
+    this.studentService.editStudent(this.student.student_id, this.studentForm.value).subscribe(res => this.activeModal.close(res), err => this.activeModal.close(err))
   }
 
   onCancel() {

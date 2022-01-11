@@ -1,13 +1,12 @@
-<ngb-toast *ngIf="show" [delay]="5000" [autohide]="false" class="toast bg-success">
-    {{message}}
-</ngb-toast>
 <div class="card shadow-sm">
     <div class="card-body">
+        <swal #Swal title="{{message.title}}" text="{{message.text}}" [icon]="message.icon" [showConfirmButton]="false" 
+        [toast]="true" position="top-end" [timer]="3000">
+        </swal>
         <div class="mb-3 d-flex align-items-center justify-content-between">
             <div class="search">
-                <input class="form-control" type="search" aria-label="search students">
+                <input class="form-control" (input)="onFilter($event)" type="search" placeholder="search name, class, country" aria-label="search students" autofocus>
             </div>
-            <!-- <button class="btn btn-success" (click)="onAddStudent()">Add New Student</button> -->
             <div ngbDropdown class="d-inline-block">
                 <button class="btn" id="dropdown" ngbDropdownToggle>
                     <fa-icon [icon]="add"></fa-icon> Add New
@@ -15,7 +14,7 @@
                 <div ngbDropdownMenu aria-labelledby="dropdown">
                     <button ngbDropdownItem (click)="onAddStudent()">Student</button>
                     <button ngbDropdownItem (click)="onAdd('Class')">Class</button>
-                    <button ngbDropdownItem (click)="onAdd('Country')">country</button>
+                    <button ngbDropdownItem (click)="onAdd('Country')">Country</button>
                 </div>
             </div>
         </div>
@@ -32,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of students; let i = index">
+                    <tr *ngFor="let student of filterdStudents; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td>{{ student.name }}</td>
                         <td>{{ student.class_name }}</td>

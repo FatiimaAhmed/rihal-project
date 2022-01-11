@@ -21,6 +21,24 @@ export class StudentsService {
     )
   };
 
+  getTotalstudents() {
+    return this.http.get(this.uri + '/totalStudents').pipe(
+      map(res => {
+        return res
+      })
+    )
+  };
+
+  getstudentsByClass(name: string) {
+    console.log(typeof (name), name)
+    
+    return this.http.get(this.uri + '/getStudentsByClass/' + name).pipe(
+      map(res => {
+        return res
+      })
+    )
+  };
+
   addStudent(student: {}) {
     return this.http.post(this.uri + '/addStudent', student);
   };

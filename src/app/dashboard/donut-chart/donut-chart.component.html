@@ -1,0 +1,8 @@
+<div class="text-right">
+    <select class="select" (change)="onChange($event.target)">
+        <option *ngFor="let class of classes" [value]="class.class_name">{{class.class_name}}</option>
+    </select>
+</div>
+<apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+    [responsive]="chartOptions.responsive" [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
+    [colors]="chartOptions.colors" [stroke]="chartOptions.stroke" [plotOptions]="chartOptions.plotOptions"> </apx-chart>

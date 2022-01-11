@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddModalComponent } from './students/add-modal/add-modal.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { DonutChartComponent } from './dashboard/donut-chart/donut-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 @NgModule({
     declarations: [
@@ -18,7 +22,8 @@ import { AddModalComponent } from './students/add-modal/add-modal.component';
         DashboardComponent,
         StudentsComponent,
         StudentModalComponent,
-        AddModalComponent
+        AddModalComponent,
+        DonutChartComponent
     ],
     imports: [
         BrowserModule,
@@ -27,7 +32,9 @@ import { AddModalComponent } from './students/add-modal/add-modal.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        [SweetAlert2Module.forRoot()],
+        NgApexchartsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
