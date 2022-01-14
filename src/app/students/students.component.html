@@ -1,15 +1,16 @@
 <div class="card shadow-sm">
     <div class="card-body">
-        <swal #Swal title="{{message.title}}" text="{{message.text}}" [icon]="message.icon" [showConfirmButton]="false" 
-        [toast]="true" position="top-end" [timer]="3000">
+        <swal #Swal title="{{message.title}}" text="{{message.text}}" [icon]="message.icon" [showConfirmButton]="false"
+            [toast]="true" position="top-end" [timer]="3000">
         </swal>
         <div class="mb-3 d-flex align-items-center justify-content-between">
             <div class="search">
-                <input class="form-control" (input)="onFilter($event)" type="search" placeholder="search name, class, country" aria-label="search students" autofocus>
+                <input class="form-control" (input)="onFilter($event)" type="search"
+                    placeholder="search name, class, country" aria-label="search students" autofocus>
             </div>
             <div ngbDropdown class="d-inline-block">
                 <button class="btn" id="dropdown" ngbDropdownToggle>
-                    <fa-icon [icon]="add"></fa-icon> Add New
+                    <img src="assets/icons/plus.svg" alt=""> Add New
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdown">
                     <button ngbDropdownItem (click)="onAddStudent()">Student</button>

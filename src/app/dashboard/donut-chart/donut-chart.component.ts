@@ -20,12 +20,10 @@ export class DonutChartComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   total: number = 0;
   public chartOptions: Partial<ChartOptions> | any;
-  @Input() classes: any[] = [];
+  @Input() list: any[] = [];
+  @Input() type: string = '';
 
-  constructor(private studentsService: StudentsService) { }
-
-  ngOnInit(): void {
-    this.getTotal();
+  constructor(private studentsService: StudentsService) {
     this.chartOptions = {
       series: [],
       chart: {
@@ -43,13 +41,13 @@ export class DonutChartComponent implements OnInit {
               show: true,
               name: {
                 show: true,
-                fontSize: '18px',
+                fontSize: '15px',
                 fontFamily: 'Montserrat, Arial, sans-serif',
                 fontWeight: 500,
                 color: "#4D4F5C",
               },
               total: {
-                show: true,
+                show: false,
                 fontSize: '18px',
                 fontFamily: 'Montserrat, Arial, sans-serif',
                 fontWeight: 500,
@@ -67,7 +65,7 @@ export class DonutChartComponent implements OnInit {
         show: true,
         position: 'right'
       },
-      labels: ['Total', 'Class A'],
+      labels: ['Total Students', 'Class A'],
       responsive: [
         {
           breakpoint: 480,
@@ -84,28 +82,31 @@ export class DonutChartComponent implements OnInit {
     };
   }
 
+  ngOnInit(): void {
+    console.log(this.type)
+    this.getTotal();
+  }
+
   getTotal() {
     this.studentsService.getTotalstudents().subscribe((res: any) => {
       this.total = res.count;
-      this.chartOptions.updateOptions = [{
-        series: [{
-          data: [this.total, 0],
-          name: ['Total', 'Class A']
-        }]
-      }];
+      this.chartOptions.series = [this.total, 0];
     }
       ,
       err => console.log(err));
   };
 
-  onChange(e: any) {
-    this.studentsService.getstudentsByClass(e.value).subscribe((res: any) => {
-      this.chartOptions.updateOptions = [{
-        series: [{
-          data: [this.total, res.countOfStudents],
-          name: ['Total', 'Class A']
-        }]
-      }];
+  onClassChange(e: any) {
+    this.studentsService.getStudentsByClass(e.value).subscribe((res: any) => {
+      this.chartOptions.series = [this.total, res.countOfStudents];
+      this.chartOptions.labels = ['Total Students', e.value]
+    })
+  };
+
+  onCountryChange(e: any) {
+    this.studentsService.getStudentsByCountry(e.value).subscribe((res: any) => {
+      this.chartOptions.series = [this.total, res.countOfStudents];
+      this.chartOptions.labels = ['Total Students', e.value]
     })
   }
 

@@ -100,8 +100,8 @@ app.post("/addClass", (req, res) => {
   let sql2 = "SELECT (class_name) FROM classes WHERE class_name = ?";
   db.all(sql2, params, (err, row) => {
     if (err) {
-      console.log(err)
-    };
+      console.log(err);
+    }
 
     if (row.length === 0) {
       db.run(sql, params, (err) => {
@@ -116,7 +116,6 @@ app.post("/addClass", (req, res) => {
       res.status(400).json("class name already exists");
     }
   });
-
 });
 
 //add new country
@@ -127,8 +126,8 @@ app.post("/addCountry", (req, res) => {
   db.all(sql2, params, (err, row) => {
     if (err) {
       res.status(500).json(err);
-    };
-    
+    }
+
     if (row.length === 0) {
       db.run(sql, params, (err) => {
         if (err) {
@@ -179,33 +178,49 @@ app.post("/deleteStudent/:id", (req, res) => {
   });
 });
 
-//get students Total 
-app.get("/totalStudents", (req,res) => {
-  let sql = 'SELECT COUNT(student_id) FROM students'
+//get students Total
+app.get("/totalStudents", (req, res) => {
+  let sql = "SELECT COUNT(student_id) FROM students";
   db.all(sql, (err, row) => {
-    if(err) {
+    if (err) {
       res.status(500).json(err);
       throw err;
-    } 
+    }
 
-    let count = row[0]['COUNT(student_id)'];
-    res.json({count});
-  })
+    let count = row[0]["COUNT(student_id)"];
+    res.json({ count });
+  });
 });
 
-//get total number of students in by class
-app.get("/getStudentsByClass/:className", (req, res) => {
-  let param = req.params.className;
-  let sql = 'SELECT COUNT(name) FROM students JOIN classes ON students.class_id = classes.id WHERE class_name = (?)';
+//get total number of students by class
+app.get("/getStudentsByClass/:classId", (req, res) => {
+  let param = req.params.classId;
+  let sql =
+    "SELECT COUNT(name) FROM students JOIN classes ON students.class_id = classes.id WHERE classes.id = (?)";
   db.all(sql, param, (err, row) => {
     if (err) {
       res.status(500).json(err);
       throw err;
     }
-    let count = row[0]['COUNT(name)'];
-    res.json({countOfStudents: count});
-  })
-})
+    let count = row[0]["COUNT(name)"];
+    res.json({ countOfStudents: count });
+  });
+});
+
+//get total number of students by country
+app.get("/getStudentsByCountry/:countryId", (req, res) => {
+  let param = req.params.countryId;
+  let sql =
+    "SELECT COUNT(name) FROM students JOIN countries ON students.country_id = countries.id WHERE countries.id = (?)";
+  db.all(sql, param, (err, row) => {
+    if (err) {
+      res.status(500).json(err);
+      throw err;
+    }
+    let count = row[0]["COUNT(name)"];
+    res.json({ countOfStudents: count });
+  });
+});
 
 //close db
 function closeDB() {

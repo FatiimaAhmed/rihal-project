@@ -7,6 +7,10 @@ body {
   font-family: "Urbanist", serif, sans-serif;
 }
 
+body.dark {
+  background-color: var(--gray-dark);
+}
+
 p {
   margin-bottom: 0;
 }

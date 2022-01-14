@@ -29,10 +29,16 @@ export class StudentsService {
     )
   };
 
-  getstudentsByClass(name: string) {
-    console.log(typeof (name), name)
-    
-    return this.http.get(this.uri + '/getStudentsByClass/' + name).pipe(
+  getStudentsByClass(id: number) {
+    return this.http.get(this.uri + '/getStudentsByClass/' + id).pipe(
+      map(res => {
+        return res
+      })
+    )
+  };
+
+  getStudentsByCountry(id: number) {
+    return this.http.get(this.uri + '/getStudentsByCountry/' + id).pipe(
       map(res => {
         return res
       })
@@ -61,7 +67,7 @@ export class StudentsService {
   };
 
   addClass(name: any) {
-    return this.http.post(this.uri + '/addClass', {name : name});
+    return this.http.post(this.uri + '/addClass', { name: name });
   };
 
   //countries
@@ -74,6 +80,6 @@ export class StudentsService {
   };
 
   addCountry(name: any) {
-    return this.http.post(this.uri + '/addCountry', {name: name});
+    return this.http.post(this.uri + '/addCountry', { name: name });
   };
 }

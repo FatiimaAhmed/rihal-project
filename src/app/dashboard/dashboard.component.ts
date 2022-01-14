@@ -11,14 +11,20 @@ export class DashboardComponent implements OnInit {
   user = faUserAlt;
   totalOfStudents: number = 0;
   classes: any[] = [];
+  countries: any[] = [];
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit(): void {
     this.getClasses();
+    this.getCountries();
   }
 
   getClasses() {
     this.studentsService.getClasses().subscribe((res: any) => this.classes = res);
+  }
+
+  getCountries() {
+    this.studentsService.getCountries().subscribe((res: any) => this.countries = res);
   }
 
 }

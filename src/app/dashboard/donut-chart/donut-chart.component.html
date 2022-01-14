@@ -1,6 +1,8 @@
-<div class="text-right">
-    <select class="select" (change)="onChange($event.target)">
-        <option *ngFor="let class of classes" [value]="class.class_name">{{class.class_name}}</option>
+<div class="d-flex align-items-center justify-content-between py-2">
+    <p class="mb-0">students per {{type}}</p>
+    <select class="select" (change)="type == 'class'? onClassChange($event.target) : onCountryChange($event.target)">
+        <option *ngFor="let item of list" [value]="item.id">{{type == 'class'? item.class_name : item.country_name}}
+        </option>
     </select>
 </div>
 <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
