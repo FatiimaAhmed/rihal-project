@@ -1,4 +1,7 @@
 <div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">{{isEdit? 'Edit Student' : 'Add New Student'}}</h5>
+    </div>
     <div class="card-body">
         <form [formGroup]="studentForm" #form>
             <div class="mb-3">
@@ -31,7 +34,7 @@
             </div>
             <div class="text-right">
                 <button class="btn btn-secondary mr-2" (click)="onCancel()">Cancel</button>
-                <button class="btn btn-success" (click)="isEdit? onEdit() : onSubmit()">{{ isEdit? 'Save' : 'Add' }}</button>
+                <button class="btn btn-custom" (click)="isEdit? onEdit() : onSubmit()">{{ isEdit? 'Save' : 'Add' }}</button>
             </div>
         </form>
     </div>

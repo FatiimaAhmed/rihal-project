@@ -15,6 +15,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DonutChartComponent } from './dashboard/donut-chart/donut-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
+import { DataComponent } from './dashboard/data/data.component';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.com
         StudentModalComponent,
         AddModalComponent,
         DonutChartComponent,
-        ThemeSwitchComponent
+        ThemeSwitchComponent,
+        DataComponent
     ],
     imports: [
         BrowserModule,

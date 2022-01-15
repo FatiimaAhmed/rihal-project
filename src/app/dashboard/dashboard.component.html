@@ -1,25 +1,27 @@
 <div class="row">
     <div class="col-12 mb-5">
         <div class="d-flex align-items-center justify-content-between">
-            <h5>welcome to dashboard</h5>
-            <button class="btn btn-success" routerLink="/students"><img class="icon mr-2" src="assets/icons/users.svg"
+            <h4 class="mb-0">welcome to dashboard</h4>
+            <button class="btn btn-custom d-none d-md-inline" routerLink="/students"><img class="icon mr-2" src="assets/icons/users.svg"
                     alt="students"> Manage Students</button>
+                    <!-- on small device -->
+            <button class="btn btn-custom d-md-none" routerLink="/students"><img class="icon" src="assets/icons/users.svg"alt="students"></button>
         </div>
     </div>
-    <div class="col-12 col-md-8">
-        area
+    <div class="col-12 mb-3">
+        <app-data></app-data>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12">
         <div class="row">
-            <div class="col-12 mb-3">
-                <div class="card">
+            <div class="col-12 col-md-6 mb-3">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <app-donut-chart [list]="classes" [type]="'class'"></app-donut-chart>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="card">
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <app-donut-chart [list]="countries" [type]="'country'"></app-donut-chart>
                     </div>

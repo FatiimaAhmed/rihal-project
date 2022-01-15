@@ -1,0 +1,48 @@
+.icon {
+    img {
+        padding: 10px;
+        border-radius: 50%;
+        width: 45px;
+    }
+}
+
+
+
+.average {
+    img {
+        background-color: rgb(240, 130, 52, 32%);
+    }
+}
+
+.max {
+    img {
+        background-color: rgb(74, 217, 145, 32%);
+    }
+}
+
+.min {
+    img {
+        background-color: rgb(162, 213, 242, 32%);
+    }
+}
+
+p {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p.average {
+    color: rgb(240, 130, 52);
+}
+
+p.max {
+    color: rgb(74, 217, 145);
+}
+
+p.min {
+    color: rgb(162, 213, 242);
+}
+
+span {
+    font-weight: 500;
+}

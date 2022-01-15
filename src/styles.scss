@@ -3,12 +3,38 @@
 @import "~bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap");
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
+  
+  background-color: #F3F3F3;
   font-family: "Urbanist", serif, sans-serif;
 }
 
 body.dark {
-  background-color: var(--gray-dark);
+  background-color: #212529;
+  color: #fff;
+  .card {
+    background-color: #2c3036;
+    color: #fff;
+  }
+
+  table {
+    color: #fff;
+    background-color: #343a40;
+  }
+
+  thead {
+    background-color: transparent;
+  }
+
+  .btn,
+  .apexcharts-legend-text {
+    color: #fff !important;
+  }
 }
 
 p {
@@ -24,4 +50,26 @@ p {
 
 .dropdown-toggle::after {
   display: none;
+}
+
+img {
+  vertical-align: text-top;
+}
+.card {
+  border-radius: 10px;
+  border: none;
+  .card-header {
+    background-color: transparent;
+  }
+}
+
+.btn-custom {
+  color: #fff;
+  background-color: #2dbe75;
+  border-color: #2dbe75;
+  font-weight: 600;
+}
+
+.btn-custom:hover {
+  color: #fff;
 }

@@ -22,8 +22,13 @@ export class DonutChartComponent implements OnInit {
   public chartOptions: Partial<ChartOptions> | any;
   @Input() list: any[] = [];
   @Input() type: string = '';
-
+  selectedValue: any = 0;
   constructor(private studentsService: StudentsService) {
+   
+  }
+
+  ngOnInit(): void {
+    this.getTotal();
     this.chartOptions = {
       series: [],
       chart: {
@@ -63,28 +68,10 @@ export class DonutChartComponent implements OnInit {
       },
       legend: {
         show: true,
-        position: 'right'
+        position: 'bottom'
       },
-      labels: ['Total Students', 'Class A'],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: '100%'
-            },
-            legend: {
-              position: "top"
-            }
-          }
-        }
-      ]
+      labels: ['Total Students', this.type]
     };
-  }
-
-  ngOnInit(): void {
-    console.log(this.type)
-    this.getTotal();
   }
 
   getTotal() {
@@ -96,17 +83,17 @@ export class DonutChartComponent implements OnInit {
       err => console.log(err));
   };
 
-  onClassChange(e: any) {
-    this.studentsService.getStudentsByClass(e.value).subscribe((res: any) => {
+  onClassChange() {
+    this.studentsService.getStudentsByClass(this.selectedValue.id).subscribe((res: any) => {
       this.chartOptions.series = [this.total, res.countOfStudents];
-      this.chartOptions.labels = ['Total Students', e.value]
+      this.chartOptions.labels = ['Total Students', this.selectedValue.class_name]
     })
   };
 
-  onCountryChange(e: any) {
-    this.studentsService.getStudentsByCountry(e.value).subscribe((res: any) => {
+  onCountryChange() {
+    this.studentsService.getStudentsByCountry(this.selectedValue.id).subscribe((res: any) => {
       this.chartOptions.series = [this.total, res.countOfStudents];
-      this.chartOptions.labels = ['Total Students', e.value]
+      this.chartOptions.labels = ['Total Students', this.selectedValue.country_name]
     })
   }
 

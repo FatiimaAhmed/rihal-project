@@ -145,7 +145,6 @@ app.post("/addCountry", (req, res) => {
 
 //edit student
 app.post("/editStudent/:id", (req, res) => {
-  console.log(req.body);
   let id = req.params.id;
   let params = [
     Number(req.body.class),
@@ -219,6 +218,20 @@ app.get("/getStudentsByCountry/:countryId", (req, res) => {
     }
     let count = row[0]["COUNT(name)"];
     res.json({ countOfStudents: count });
+  });
+});
+
+//get students age
+app.get("/getStudentsAge", (req, res) => {
+  let sql =
+    "SELECT (date_of_birth) FROM students";
+  db.all(sql, (err, row) => {
+    if (err) {
+      res.status(500).json(err);
+      throw err;
+    }
+
+    res.json(row);
   });
 });
 

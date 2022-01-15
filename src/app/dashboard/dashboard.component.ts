@@ -12,19 +12,24 @@ export class DashboardComponent implements OnInit {
   totalOfStudents: number = 0;
   classes: any[] = [];
   countries: any[] = [];
+  
+
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit(): void {
-    this.getClasses();
-    this.getCountries();
+    this.onGetClasses();
+    this.onGetCountries();
+    
   }
 
-  getClasses() {
+  onGetClasses() {
     this.studentsService.getClasses().subscribe((res: any) => this.classes = res);
   }
 
-  getCountries() {
+  onGetCountries() {
     this.studentsService.getCountries().subscribe((res: any) => this.countries = res);
   }
+
+  
 
 }

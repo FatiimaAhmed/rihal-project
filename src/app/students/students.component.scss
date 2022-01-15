@@ -1,8 +1,42 @@
 thead {
   background-color: var(--light);
+  font-weight: 600;
 }
 
-.ng-fa-icon.text-secondary,
-.ng-fa-icon.text-danger {
+.tb-icon {
   cursor: pointer;
+}
+
+.search {
+  input {
+    background-color: #edeff2;
+    border: none;
+    border-radius: 10px;
+  }
+
+  input:focus {
+    box-shadow: 0 0 0 0.2rem #e2e2e25e;
+  }
+}
+
+.dropdown {
+  button {
+    font-weight: 500;
+  }
+}
+
+.btn:focus,
+.btn.focus {
+  box-shadow: none;
+}
+
+div {
+  p {
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  p:hover {
+    color: #2dbe75;
+  }
 }

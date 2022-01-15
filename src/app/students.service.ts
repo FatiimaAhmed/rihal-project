@@ -37,6 +37,14 @@ export class StudentsService {
     )
   };
 
+  getStudentsAge() {
+    return this.http.get(this.uri + '/getStudentsAge').pipe(
+      map(res => {
+        return res
+      })
+    )
+  }
+
   getStudentsByCountry(id: number) {
     return this.http.get(this.uri + '/getStudentsByCountry/' + id).pipe(
       map(res => {

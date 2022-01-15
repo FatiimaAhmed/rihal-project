@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-12 col-md-4 mb-3 mb-md-0" *ngFor="let item of data | keyvalue">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex aligin-items-center">
+                    <div class="icon {{item.key}}">
+                        <img src="{{item.key == 'average'? 'assets/icons/activity.svg' : item.key == 'max'? 'assets/icons/arrow-up.svg' : 'assets/icons/arrow-down.svg'}}"
+                            class="mr-3" alt="">
+                    </div>
+                    <div class="ms-3">
+                        <p class="{{item.key}}">{{item.value}}</p>
+                        <span class="">{{item.key}} students age</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

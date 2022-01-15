@@ -7,34 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeSwitchComponent implements OnInit {
   isDarkTheme: boolean = false;
-  modeSrc: string = this.isDarkTheme ? 'assets/icons/sun.svg' : 'assets/icons/sun.svg';
-
-  mode = Boolean(localStorage.getItem('mode'))
+  modeSrc: string = 'assets/icons/moon.svg';
   constructor() { }
 
   ngOnInit(): void {
-    this.isDarkTheme = this.mode;
-    if (this.isDarkTheme) {
-      document.body.classList.toggle('dark');
-    }
-    console.log(this.isDarkTheme)
+    let mode = localStorage.getItem('mode');
+    this.isDarkTheme = JSON.parse(mode!);
+    this.setTheme();
   }
 
   onToggle() {
-    this.isDarkTheme = !this.mode;
-    console.log(this.isDarkTheme)
-    //save last user prefrence to local storage
-    localStorage.setItem('mode', String(this.isDarkTheme));
+    this.isDarkTheme = !this.isDarkTheme;
+    this.setTheme();
+  };
 
+  setTheme() {
     if (this.isDarkTheme) {
-      console.log('night')
       this.modeSrc = 'assets/icons/sun.svg';
+      document.body.classList.add('dark');
     } else {
-      console.log('day')
       this.modeSrc = 'assets/icons/moon.svg';
+      document.body.classList.remove('dark');
     }
 
-    document.body.classList.toggle('dark');
+    //save user prefrence
+    localStorage.setItem('mode', JSON.stringify(this.isDarkTheme));
   }
 
 }
