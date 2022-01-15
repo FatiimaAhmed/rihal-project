@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 
 export class StudentsService {
-  uri: string = 'http://localhost:8000';
+  uri: string = 'https://rihal-api.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
