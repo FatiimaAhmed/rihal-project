@@ -9,8 +9,7 @@ html {
 }
 
 body {
-  
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   font-family: "Urbanist", serif, sans-serif;
 }
 
@@ -72,4 +71,10 @@ img {
 
 .btn-custom:hover {
   color: #fff;
+}
+
+.loader-container {
+  position: absolute;
+  top: 35%;
+  left: 45%;
 }

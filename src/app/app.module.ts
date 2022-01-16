@@ -16,6 +16,7 @@ import { DonutChartComponent } from './dashboard/donut-chart/donut-chart.compone
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
 import { DataComponent } from './dashboard/data/data.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 
@@ -28,7 +29,8 @@ import { DataComponent } from './dashboard/data/data.component';
         AddModalComponent,
         DonutChartComponent,
         ThemeSwitchComponent,
-        DataComponent
+        DataComponent,
+        LoaderComponent
     ],
     imports: [
         BrowserModule,

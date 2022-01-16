@@ -16,14 +16,20 @@
                     <img src="assets/icons/plus.svg" alt=""> Add New
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdown">
-                    <button ngbDropdownItem (click)="onAddStudent()"><img width="16" class="mr-1" src="assets/icons/user-plus.svg" alt="add student"> Student</button>
-                    <button ngbDropdownItem (click)="onAdd('Class')"><img width="16" class="mr-1" src="assets/icons/edit-2.svg" alt="add class"> Class</button>
-                    <button ngbDropdownItem (click)="onAdd('Country')"><img width="16" class="mr-1" src="assets/icons/globe.svg" alt="add country"> Country</button>
+                    <button ngbDropdownItem (click)="onAddStudent()"><img width="16" class="mr-1"
+                            src="assets/icons/user-plus.svg" alt="add student"> Student</button>
+                    <button ngbDropdownItem (click)="onAdd('Class')"><img width="16" class="mr-1"
+                            src="assets/icons/edit-2.svg" alt="add class"> Class</button>
+                    <button ngbDropdownItem (click)="onAdd('Country')"><img width="16" class="mr-1"
+                            src="assets/icons/globe.svg" alt="add country"> Country</button>
                 </div>
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-borderless">
+            <div class="text-center loader-container">
+                <app-loader *ngIf="filterdStudents.length <= 0"></app-loader>
+            </div>
+            <table class="table table-borderless" *ngIf="filterdStudents.length > 0">
                 <thead>
                     <tr>
                         <td>#</td>
@@ -42,8 +48,10 @@
                         <td>{{ student.date_of_birth }}</td>
                         <td>{{ student.country_name }}</td>
                         <td>
-                            <img placement="left" ngbTooltip="edit" class="tb-icon" src="assets/icons/edit-3.svg" width="20" alt="edit" (click)="onEditStudent(student)"> |
-                            <img placement="right" ngbTooltip="delete" class="tb-icon" src="assets/icons/trash-2.svg" width="20" alt="delete" (click)="onDeleteStudent(student.student_id)">
+                            <img placement="left" ngbTooltip="edit" class="tb-icon" src="assets/icons/edit-3.svg"
+                                width="20" alt="edit" (click)="onEditStudent(student)"> |
+                            <img placement="right" ngbTooltip="delete" class="tb-icon" src="assets/icons/trash-2.svg"
+                                width="20" alt="delete" (click)="onDeleteStudent(student.student_id)">
                         </td>
                     </tr>
                 </tbody>

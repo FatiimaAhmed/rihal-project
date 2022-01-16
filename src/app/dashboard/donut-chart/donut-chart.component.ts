@@ -23,9 +23,8 @@ export class DonutChartComponent implements OnInit {
   @Input() list: any[] = [];
   @Input() type: string = '';
   selectedValue: any = 0;
-  constructor(private studentsService: StudentsService) {
-   
-  }
+  loading: boolean = true;
+  constructor(private studentsService: StudentsService) { }
 
   ngOnInit(): void {
     this.getTotal();
@@ -78,22 +77,27 @@ export class DonutChartComponent implements OnInit {
     this.studentsService.getTotalstudents().subscribe((res: any) => {
       this.total = res.count;
       this.chartOptions.series = [this.total, 0];
+      this.loading = false;
     }
       ,
       err => console.log(err));
   };
 
   onClassChange() {
+    this.loading = true;
     this.studentsService.getStudentsByClass(this.selectedValue.id).subscribe((res: any) => {
       this.chartOptions.series = [this.total, res.countOfStudents];
-      this.chartOptions.labels = ['Total Students', this.selectedValue.class_name]
+      this.chartOptions.labels = ['Total Students', this.selectedValue.class_name];
+      this.loading = false;
     })
   };
 
   onCountryChange() {
+    this.loading = true;
     this.studentsService.getStudentsByCountry(this.selectedValue.id).subscribe((res: any) => {
       this.chartOptions.series = [this.total, res.countOfStudents];
-      this.chartOptions.labels = ['Total Students', this.selectedValue.country_name]
+      this.chartOptions.labels = ['Total Students', this.selectedValue.country_name];
+      this.loading = false;
     })
   }
 

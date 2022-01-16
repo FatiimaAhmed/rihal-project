@@ -1,10 +1,14 @@
 <div class="d-flex align-items-center justify-content-between py-2">
     <p class="mb-0">students per {{type}}</p>
-    <select class="select" [(ngModel)]="selectedValue" (ngModelChange)="type == 'class'? onClassChange() : onCountryChange()">
+    <select class="select" [(ngModel)]="selectedValue"
+        (ngModelChange)="type == 'class'? onClassChange() : onCountryChange()">
         <option value="0" disabled>select {{type == 'class'? 'class' : 'country'}}</option>
         <option *ngFor="let item of list" [ngValue]="item">{{type == 'class'? item.class_name : item.country_name}}
         </option>
     </select>
+</div>
+<div class="text-center loader-container">
+    <app-loader *ngIf="loading"></app-loader>
 </div>
 <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
     [responsive]="chartOptions.responsive" [legend]="chartOptions.legend" [dataLabels]="chartOptions.dataLabels"
